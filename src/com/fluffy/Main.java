@@ -1,16 +1,23 @@
 package com.fluffy;
 
+import com.fluffy.items.Item;
+import com.fluffy.items.NewItem;
+import com.fluffy.items.RegularItem;
+import com.fluffy.items.SaleItem;
+import com.fluffy.items.SecondFreeItem;
+
 public class Main {
-    /**
-     * Tests all class methods.
-     */
     public static void main(String[] args) {
-        // TODO: add tests here
-        ShoppingCart cart = new ShoppingCart();
-        cart.addItem("Apple", 0.99, 5, ShoppingCart.ItemType.NEW);
-        cart.addItem("Banana", 20.00, 4, ShoppingCart.ItemType.SECOND_FREE);
-        cart.addItem("A long piece of toilet paper", 17.20, 1, ShoppingCart.ItemType.SALE);
-        cart.addItem("Nails", 2.00, 500, ShoppingCart.ItemType.REGULAR);
-        System.out.println(cart.formatTicket());
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Item[] items = new Item[]{
+                new NewItem("Apple", 0.99, 5),
+                new SecondFreeItem("Banana", 20.00, 4),
+                new SaleItem("A long piece of toilet paper", 17.20, 1),
+                new RegularItem("Nails", 2.00, 500),
+        };
+        for (Item item : items) {
+            shoppingCart.addItem(item);
+        }
+        System.out.println(shoppingCart.formatTicket());
     }
 }
